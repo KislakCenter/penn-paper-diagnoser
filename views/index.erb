@@ -2,22 +2,13 @@
 
 <form action="/sizeit" method="post">
   <div class="form-group">
-    <label for="paper_height">Paper height (mm)</label>
+    <label for="paper_height">Paper height (cm)</label>
     <input type="text" class="form-control" id="paper_height" name="paper_height" placeholder="A number">
   </div>
 
   <div class="form-group">
-    <label for="paper_width">Paper width (mm)</label>
+    <label for="paper_width">Paper width (cm)</label>
     <input type="text" class="form-control" id="paper_width" name="paper_width" placeholder="A number">
-  </div>
-
-  <div class="form-group">
-    <label for="paper_width">Laid lines</label>
-    <select class="form-control" id="laid_lines" name="laid_lines">
-      <option></option>
-      <option value="vertical">Vertical</option>
-      <option value="horizontal">Horizontal</option>
-    </select>
   </div>
 
   <div class="form-group">
@@ -26,6 +17,15 @@
       <option></option>
       <option value="vertical">Vertical</option>
       <option value="horizontal">Horizontal</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="paper_width">Deckle Edge?</label>
+    <select class="form-control" id="deckle" name="deckle">
+      <option></option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
     </select>
   </div>
 
