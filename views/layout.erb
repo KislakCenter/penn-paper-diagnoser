@@ -6,6 +6,17 @@
     <!-- Bootstrap -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/styles_dtm.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+    function MM_showHideLayers() { //v9.0
+      var i,p,v,obj,args=MM_showHideLayers.arguments;
+      for (i=0; i<(args.length-2); i+=3)
+      with (document) if (getElementById && ((obj=getElementById(args[i]))!=null)) { v=args[i+2];
+        if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+        obj.visibility=v; }
+    }
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,26 +26,27 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
+     <a href="http://schoenberginstitute.org">
+   <div id="logoholder" class="img-responsive img-center">
+<div id="logotext"><img src="paper_sizer_logo_dt_text.gif" width="458" height="151" alt="SIMS" border="0"></div>
+  </div></a>
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Paper-Sizer</a>
-        </div>
-      </nav>
+<div class="container text-center">
+  <div id="apptitle"></div>
+
 
       <div>
         <%= yield %>
       </div>
 
-  </div>
+ <br />
+<div id="followus"><img src="followus.gif" width="281" height="68" align="left" alt="Folloe SIMS"><br />Visit us at <a href="http://schoenberginstitute.org">Schoenberginstitute.org</a></div>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -1,34 +1,46 @@
-<h1>Enter your paper details</h1>
+<h5><strong><em>Enter your paper details</em></strong></h5>
+<form action="/sizeit" method="post" target="resultframe">
+    <div class="form-group form-group-shorter">
 
-<form action="/sizeit" method="post">
-  <div class="form-group">
-    <label for="paper_height">Paper height (cm)</label>
-    <input type="text" class="form-control" id="paper_height" name="paper_height" placeholder="A number">
+    <input class="form-control" id="paper_height" name="paper_height" placeholder="Height (cm)" type="text">
   </div>
 
-  <div class="form-group">
-    <label for="paper_width">Paper width (cm)</label>
-    <input type="text" class="form-control" id="paper_width" name="paper_width" placeholder="A number">
+  <div class="form-group form-group-shorter">
+
+    <input class="form-control" id="paper_width" name="paper_width" placeholder="Width (cm)" type="text">
   </div>
 
-  <div class="form-group">
-    <label for="paper_width">Chain lines</label>
-    <select class="form-control" id="chain_lines" name="chain_lines">
-      <option></option>
-      <option value="vertical">Vertical</option>
-      <option value="horizontal">Horizontal</option>
-    </select>
-  </div>
+<div class="form-group">
+<h5><strong>The Chain Lines run</strong><br />
+    <label class="radio-inline control-label">
+      <input type="radio" name="chain_lines" value="vertical" >Vertical
+    </label>
+    <label class="radio-inline control-label">
+      <input type="radio" name="chain_lines" value="horizontal">Horizontal
+    </label>
+    <label class="radio-inline control-label">
+      <input type="radio" name="chain_lines"  value="unsure" checked="checked">Not Sure
+    </label>
+    <br /><br />
+    <div class="note-text"><strong>Note:</strong> Laid Lines always run perpendicular to Chain Lines and are easier to see in most digitized images.</div>
+</div>
 
-  <div class="form-group">
-    <label for="paper_width">Deckle Edge?</label>
-    <select class="form-control" id="deckle" name="deckle">
-      <option></option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
-  </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+<div class="form-group deckles">
+<strong>I can see Deckle along the</strong><br />
+<label class="checkbox-inline">
+    <input type="checkbox" id="deckle_side" name="deckle_side" value="outer">Outer Margin
+</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label class="checkbox-inline">
+    <input type="checkbox" id="deckle_tobo" name="deckle_tobo" value="top">Top and Bottom
+</label>
+</div>
+<p></p>
 
+<button type="submit" class="btn btn-primary" onClick="MM_showHideLayers('resultframe','','show')" >Submit</button>
+<input type="reset" onClick="MM_showHideLayers('resultframe','','hide')" value="Clear">
 </form>
+<p></p>
+<iframe name="resultframe" id="resultframe" src=""></iframe>
+ <br />
+
