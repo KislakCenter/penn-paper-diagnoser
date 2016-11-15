@@ -76,6 +76,6 @@ class PaperSize
   end
 
   def to_s
-    "#{format} #{name} ".upcase.gsub('_' , '-').sub('SIXTEEN-MO' , '16mo') + dimensions
+    "#{name} #{format}  ".upcase.gsub('_' , '-').sub('SIXTEEN-MO' , '16mo') + dimensions
   end
 end
