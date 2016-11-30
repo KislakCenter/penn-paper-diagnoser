@@ -9,15 +9,18 @@ class Diagnoser
   attr_reader :matches
   attr_reader :sm
 
-  def initialize(height, width, chain, deckle_tobo, deckle_side)
-    @height = height
-    @width  = width
-    @chain  = chain
-    @deckle_tobo = deckle_tobo
-    @deckle_side = deckle_side
+  def initialize # (height, width, chain, deckle_tobo, deckle_side)
+    # @height = height
+    # @width  = width
+    # @chain  = chain
+    # @deckle_tobo = deckle_tobo
+    # @deckle_side = deckle_side
 
     @formats = %i(folio agenda_quarto quarto octavo sixteen_mo)
     @names   = %i(imperial super_royal royal super_median median super_chancery chancery mezzo_median)
+    @formats += [:full_sheet] if $single
+
+
     @papersizes = []
     @formats.each do |f|
       @names.each do |n|
@@ -60,36 +63,40 @@ class Diagnoser
     @sm = sorted
   end
 
-  def get_results
-    return [] if sm == []
-    return [sm[0]] if sm.length == 1
+  def get_results # clean up, currently a pupa
+    s0 = sm[0]
+    s1 = sm[1]
+    return [] if s0.nil?
+    return [s0] if sm.length == 1
+    # return [s0] if $single # if sm[0].format == :full_sheet
     if (deckle_tobo && deckle_side)
-      if sm[1].measure(:a) == sm[0].measure(:a)
-        ["#{sm[0]} or #{sm[1]}"]
+      if s1.measure(:a) == s0.measure(:a)
+        ["#{s0} or #{s1}"]
       else
-        [sm[0]]
+        [s0]
       end
     elsif deckle_tobo || deckle_side
+      dim = deckle_tobo ? :h : :w
       dim = :h
       if deckle_side
         dim = :w
       end
       sd = sort_by_dim(dim)
-      return [sd[0]] if sd[0].measure(dim) < sm[0].measure(dim)
+      return [sd[0]] if sd[0].measure(dim) < s0.measure(dim)
       second = nil
       sd.each do |p|
-        if p != sm[0] && (p.measure(dim) == sm[0].measure(dim))
+        if p != s0 && (p.measure(dim) == s0.measure(dim))
           second = p
           break
         end
       end
       if second
-        [sm[0], second]
+        [s0, second]
       else
-        [sm[0]]
+        [s0]
       end
     else
-      [sm[0], sm[1]]
+      [s0, s1]
     end
   end
 end

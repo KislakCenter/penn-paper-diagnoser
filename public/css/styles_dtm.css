@@ -76,9 +76,9 @@ body {
 	visibility: hidden;
 	z-index: 3;
 	height: 75px;  /*75px;*/
-	width: 740px; /*620px;*/
+	width: 90%; /*620px;*/
 	margin-top: 15px;
-	border: solid 1px #ccc;
+	border: solid 0px #ccc;
 	border-radius: 5px;
 	padding-bottom: 3px;
 	scroll-behavior: auto;

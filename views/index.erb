@@ -1,14 +1,27 @@
 <h5><strong><em>Enter your paper details</em></strong></h5>
 <form action="/sizeit" method="post" target="resultframe">
-    <div class="form-group form-group-shorter">
 
-    <input class="form-control" id="paper_height" name="paper_height" placeholder="Height (cm)" type="text">
-  </div>
+<div class="form-group">
+<h5><strong>We are dealing with</strong><br />
+    <label class="radio-inline control-label">
+      <input type="radio" name="object_type" value="bound" >Quires of Paper
+    </label>
+    <label class="radio-inline control-label">
+      <input type="radio" name="object_type" value="single">A Single Sheet
+    </label>
+    <br /><br />
+</div>
 
-  <div class="form-group form-group-shorter">
+<div class="form-group form-group-shorter">
 
-    <input class="form-control" id="paper_width" name="paper_width" placeholder="Width (cm)" type="text">
-  </div>
+  <input class="form-control" id="paper_height" name="paper_height" placeholder="Height (cm)" type="text">
+</div>
+
+<div class="form-group form-group-shorter">
+
+  <input class="form-control" id="paper_width" name="paper_width" placeholder="Width (cm)" type="text">
+</div>
+
 
 <div class="form-group">
 <h5><strong>The Chain Lines run</strong><br />
@@ -19,7 +32,7 @@
       <input type="radio" name="chain_lines" value="horizontal">Horizontal
     </label>
     <label class="radio-inline control-label">
-      <input type="radio" name="chain_lines"  value="unsure" checked="checked">Not Sure
+      <input type="radio" name="chain_lines"  value="unsure" checked="checked">Don't Know
     </label>
     <br /><br />
     <div class="note-text"><strong>Note:</strong> Laid Lines always run perpendicular to Chain Lines and are easier to see in most digitized images.</div>
@@ -29,7 +42,7 @@
 <div class="form-group deckles">
 <strong>I can see Deckle along the</strong><br />
 <label class="checkbox-inline">
-    <input type="checkbox" id="deckle_side" name="deckle_side" value="outer">Outer Margin
+    <input type="checkbox" id="deckle_side" name="deckle_side" value="outer">Side Margins
 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label class="checkbox-inline">
     <input type="checkbox" id="deckle_tobo" name="deckle_tobo" value="top">Top and Bottom

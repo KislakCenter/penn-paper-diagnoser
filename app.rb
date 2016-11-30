@@ -14,6 +14,9 @@ post '/sizeit' do
   chain       = params["chain_lines"]
   deckle_tobo = params["deckle_tobo"] == 'top'
   deckle_side = params["deckle_side"] == 'outer'
+  $single     = params["object_type"] == 'single'
+  $landsc     = $single && (width > height)
+  width, height = height, width if $landsc
 
   d = Diagnoser.new(height, width, chain, deckle_tobo, deckle_side)
 
