@@ -16,15 +16,14 @@ post '/sizeit' do
   deckle_side = params["deckle_side"] == 'outer'
   $single     = params["object_type"] == 'single'
   $landsc     = $single && (width > height)
-  width, height = height, width if $landsc
+  height, width = width, height if $landsc
 
-  d = Diagnoser.new(height, width, chain, deckle_tobo, deckle_side)
+  d = Diagnoser.new
 
-  d.find_matches # height, width, chain
-
+  d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
 
-  res = d.get_results # deckle_tobo, deckle_side
+  res = d.get_results(deckle_tobo, deckle_side)
 
   result = ''
   case res.length
