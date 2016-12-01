@@ -1,4 +1,5 @@
-require 'lib/paper_size'
+require './paper_size'
+# require 'lib/paper_size'
 
 class Diagnoser
   attr_reader :height
@@ -36,24 +37,8 @@ class Diagnoser
   end
 
   def sort_by_dim(dim)
-    key      = {}
-    measures = []
-    count = 1
-    @matches.each do |mtc|
-      msr = mtc.measure(dim)
-      if key.include? msr
-        msr -= 0.01 * count
-        count += 1
-      end
-      key[msr] = mtc
-      measures << msr
-    end
-    sorted = []
-    measures.sort!.uniq!
-    measures.each{ |msr| sorted << key[msr] }
-    @sorted_matches = sorted
+    @sorted_matches = @matches.sort_by{ |m| m.measure(dim) }
   end
-
 
   def get_results(deckle_tobo, deckle_side)
     s0 = @sorted_matches[0]
