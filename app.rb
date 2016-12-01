@@ -16,7 +16,10 @@ post '/sizeit' do
   deckle_side = params["deckle_side"] == 'outer'
   $single     = params["object_type"] == 'single'
   $landsc     = $single && (width > height)
-  height, width = width, height if $landsc
+  if $landsc
+    height, width = width, height
+    chain = {'vertical' => 'horizontal', 'horizontal' => 'vertical'}[chain]
+  end
 
   d = Diagnoser.new
 

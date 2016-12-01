@@ -6,8 +6,6 @@ class Diagnoser
   attr_reader :chain
   attr_reader :deckle_tobo
   attr_reader :deckle_side
-  attr_reader :matches
-  attr_reader :sm
 
   def initialize
     @formats = %i(folio agenda_quarto quarto octavo sixteen_mo)
@@ -41,7 +39,7 @@ class Diagnoser
     key      = {}
     measures = []
     count = 1
-    matches.each do |mtc|
+    @matches.each do |mtc|
       msr = mtc.measure(dim)
       if key.include? msr
         msr -= 0.01 * count
@@ -53,14 +51,15 @@ class Diagnoser
     sorted = []
     measures.sort!.uniq!
     measures.each{ |msr| sorted << key[msr] }
-    @sm = sorted
+    @sorted_matches = sorted
   end
 
+
   def get_results(deckle_tobo, deckle_side)
-    s0 = sm[0]
-    s1 = sm[1]
+    s0 = @sorted_matches[0]
+    s1 = @sorted_matches[1]
     return [] if s0.nil?
-    return [s0] if sm.length == 1
+    return [s0] if @sorted_matches.length == 1
     # return [s0] if $single # if sm[0].format == :full_sheet
     if (deckle_tobo && deckle_side)
       if s1.measure(:a) == s0.measure(:a)
