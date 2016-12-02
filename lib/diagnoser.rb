@@ -1,12 +1,7 @@
-require './paper_size'
-# require 'lib/paper_size'
+require 'lib/paper_size'
 
 class Diagnoser
-  attr_reader :height
-  attr_reader :width
-  attr_reader :chain
-  attr_reader :deckle_tobo
-  attr_reader :deckle_side
+  attr_reader :sorted_matches
 
   def initialize
     @formats = %i(folio agenda_quarto quarto octavo sixteen_mo)

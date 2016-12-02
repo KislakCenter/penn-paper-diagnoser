@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
+
 require 'bundler/setup'
 require 'lib/diagnoser'
-
 require 'sinatra'
 
 get '/' do
@@ -22,13 +22,11 @@ post '/sizeit' do
   end
 
   d = Diagnoser.new
-
   d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
 
+  result = ""
   res = d.get_results(deckle_tobo, deckle_side)
-
-  result = ''
   case res.length
   when 0
     result = "No known paper sizes match your description."
