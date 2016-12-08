@@ -44,13 +44,12 @@ class Diagnoser
     s0 = @sorted_matches[0]
     s1 = @sorted_matches[1]
     return [] if s0.nil?
-    return [s0] if @sorted_matches.length == 1
-    # return [s0] if $single # if sm[0].format == :full_sheet
-    if (deckle_tobo && deckle_side)
-      if s1.measure(:a) == s0.measure(:a)
-        ["#{s0} or #{s1}"]
-      else
+    return [s0] if s1.nil?
+    if deckle_tobo && deckle_side
+      unless s1.area == s0.area
         [s0]
+      else
+        ["#{s0} or #{s1}"]
       end
     elsif deckle_tobo || deckle_side
       dim = deckle_tobo ? :h : :w
