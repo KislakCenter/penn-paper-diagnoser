@@ -1,5 +1,5 @@
-require './paper_size'
-# require 'lib/paper_size'
+# require './paper_size'
+require 'lib/paper_size'
 
 class Diagnoser
   attr_reader :height
@@ -21,7 +21,7 @@ class Diagnoser
     end
 
     @exclusion = Hash.new([])
-    @exclusion['vertical']   = %i(quarto sixteen_mo)
+    @exclusion['vertical']   = %i(quarto sixteen_mo) # full_sheet)
     @exclusion['horizontal'] = %i(folio agenda_quarto octavo)
   end
 
@@ -46,11 +46,7 @@ class Diagnoser
     return [] if s0.nil?
     return [s0] if s1.nil?
     if deckle_tobo && deckle_side
-      unless s1.area == s0.area
-        [s0]
-      else
-        ["#{s0} or #{s1}"]
-      end
+      s1.area == s0.area ? ["#{s0} or #{s1}"] : [s0]
     elsif deckle_tobo || deckle_side
       dim = deckle_tobo ? :h : :w
       sd = sort_by_dim(dim)
@@ -62,11 +58,7 @@ class Diagnoser
           break
         end
       end
-      if second
-        [s0, second]
-      else
-        [s0]
-      end
+      second ? [s0, second] : [s0]
     else
       [s0, s1]
     end
