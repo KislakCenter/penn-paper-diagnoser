@@ -9,7 +9,7 @@ UNTRIMDIMS = {
   mezzo_median:   [26.5, 19.5]
 }
 
-ALT_F = {
+ALT_FORMAT = {
  full_sheet:    'full sheet',
  folio:         'half sheet',
  agenda_quarto: 'tall quarter sheet',
@@ -28,7 +28,6 @@ class PaperSize
   def initialize(format, name)
     @format = format
     @name   = name
-
     dims = get_dims(format, name)
     @height = dims[0].round(1)
     @width  = dims[1].round(1)
@@ -72,7 +71,7 @@ class PaperSize
   end
 
   def to_s
-    form = $single ? ALT_F[format] : format.upcase
+    form = $single ? ALT_FORMAT[format] : format.upcase
     if $single
       ori = $landsc ? '(landscape) ' : '(portrait) '
     else

@@ -1,4 +1,3 @@
-# require './paper_size'
 require 'lib/paper_size'
 
 class Diagnoser
@@ -51,20 +50,25 @@ class Diagnoser
       dim = deckle_tobo ? :h : :w
       sd = sort_by_dim(dim)
       return [sd[0]] if sd[0].measure(dim) < s0.measure(dim)
-      second = nil
+      second_place = nil
       sd.each do |p|
         if p != s0 && (p.measure(dim) == s0.measure(dim))
-          second = p
+          second_place = p
           break
         end
       end
-      second ? [s0, second] : [s0]
+      second_place ? super_check([s0, second_place]) : [s0]
     else
-      [s0, s1]
+      super_check([s0, s1])
     end
   end
 end
 
+def super_check(pairing)
+  return pairing unless pairing[0].name == :chancery && pairing[1] == :super_chancery
+  med = PaperSize.new(pairing[0].format, :median)
+  @sorted_matches.include?(med) ? (pairing + [med]) : pairing
+end
 
 
 
