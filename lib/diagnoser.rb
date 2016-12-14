@@ -20,8 +20,12 @@ class Diagnoser
     end
 
     @exclusion = Hash.new([])
-    @exclusion['vertical']   = %i(quarto sixteen_mo) # full_sheet)
+    @exclusion['vertical']   = %i(quarto sixteen_mo full_sheet)
     @exclusion['horizontal'] = %i(folio agenda_quarto octavo)
+  end
+
+  def lock_format(f)
+    @exclusion['vertical'] = @exclusion['horizontal'] = @formats - f
   end
 
   def find_matches(height, width, chain)
@@ -65,9 +69,18 @@ class Diagnoser
 end
 
 def super_check(pairing)
-  return pairing unless pairing[0].name == :chancery && pairing[1] == :super_chancery
+  return pairing unless pairing[0].name == :chancery && pairing[1].name == :super_chancery
   med = PaperSize.new(pairing[0].format, :median)
   @sorted_matches.include?(med) ? (pairing + [med]) : pairing
+  # I don't think this works. The median size needs to be eliminated if the deckle excludes it...
+end
+
+def eliminate_by_deckle(height, width, deckle_tobo, deckle_side)
+  return @sorted_matches[0] if deckle_tobo && deckle_side
+         # or something to that effect
+  dim  = deckle_tobo ? :h : :w
+  @matches.each{ |m| @matches.delete(m) if m.measure(dim) > {h: height, w: width}[dim] }
+  sort_by_dim(:a) # would actually obviate generalized sort_by_dim method
 end
 
 
