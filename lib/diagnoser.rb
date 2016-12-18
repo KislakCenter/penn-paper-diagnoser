@@ -10,7 +10,7 @@ class Diagnoser
   def initialize
     @formats = %i(folio agenda_quarto quarto octavo sixteen_mo)
     @names   = %i(imperial super_royal royal super_median median super_chancery chancery mezzo_median)
-    @formats << [:full_sheet] if $single
+    @formats << :full_sheet if $single
 
     @papersizes = []
     @names.each do |n|; @formats.each do |f|
@@ -34,7 +34,7 @@ class Diagnoser
   end
 
   def lock_format(f)
-    @exclusion['vertical'] = @exclusion['horizontal'] = @formats - [f]
+    @exclusion = Hash.new(%i[folio agenda_quarto quarto octavo sixteen_mo])
   end
 
   def find_matches(height, width, chain)

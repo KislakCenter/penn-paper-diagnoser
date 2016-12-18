@@ -32,7 +32,7 @@ post '/sizeit' do
   end
 
   d = Diagnoser.new
-  d.lock_format(:full_sheet) if $landsc || ! deckles.include?(false)
+  d.lock_format(:full_sheet) if $single && ! deckles.include?(false)
   d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
 
