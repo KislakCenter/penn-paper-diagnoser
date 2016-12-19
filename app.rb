@@ -22,7 +22,6 @@ post '/sizeit' do
     deckles.reverse!
   end
 
-<<<<<<< HEAD
   deckle_t, deckle_b, deckle_r, deckle_l = deckles
   if $single
     deckle_tobo = deckle_t && deckle_b
@@ -33,49 +32,29 @@ post '/sizeit' do
   end
 
   d = Diagnoser.new
-<<<<<<< HEAD
-<<<<<<< HEAD
   d.lock_format(:full_sheet) if $single && ! deckles.include?(false)
   d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
 
-  result = ''
-=======
-  d = Diagnoser.new
-=======
->>>>>>> master
-=======
->>>>>>> master
-  d.find_matches(height, width, chain)
-  d.sort_by_dim(:a)
-
-  result = ""
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> master
-  res = d.get_results(deckle_tobo, deckle_side)
-  case res.length
+  res     = d.get_results(deckle_tobo, deckle_side)
+  message = case res.length
   when 0
-    result = "No known paper sizes match your description."
+    "No known paper sizes match your description."
   when 1
-    result = "The only available size is #{res[0]}."
+    "The only available size is #{res[0]}."
   when 2
     imp_vs_mm_format = res.map(&:name) == %i(imperial mezzo_median) ? res[0].format : nil
-    result = "The smallest available size is #{res[0]}. <br> The second smallest available size is #{res[1]}."
+    "The smallest available size is #{res[0]}. <br> The second smallest available size is #{res[1]}."
   when 3
     comp1  = %i(quarto sixteen_mo).include?(res[0].format) ? 'wider' : 'taller'
     comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
     comp1, comp2 = comp2, comp1 if $landsc
-    result = "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. The more common #{res[2]} is both #{comp1} and #{comp2}."
+    "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. The more common #{res[2]} is both #{comp1} and #{comp2}."
   end
 
   if imp_vs_mm_format
     other_format = {octavo: :folio, sixteen_mo: :quarto}[imp_vs_mm_format]
-    result << "<br>IMPERIAL and MEZZO-MEDIAN can be distinguished by the placement of the watermark." # If the watermark is ....
+    message << "<br>IMPERIAL and MEZZO-MEDIAN can be distinguished by the placement of the watermark." # If the watermark is ....
   end # ^^^ Wording ^^^^
 
   res_forms = res.map(&:format)
@@ -96,13 +75,13 @@ post '/sizeit' do
     p2 = sn[1]
     "<br>Since you found deckle on the top and bottom, it's very likely that it was printed on #{p1[:sh]} if it's #{p1[:fmt]}, or on #{p2[:sh]} if it's #{p2[:fmt]}."
   end
-  result << note
+  message << note
 
   larger, smaller = $landsc ? [width, height] : [height, width]
   ratio = "RATIO: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
-  result << "<br><br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
+  message << "<br><br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
 
-  params["result"] = result
+  params["result"] = message
   params["ratio"]  = ratio
   erb :sizeit, locals: params, layout: false
 end

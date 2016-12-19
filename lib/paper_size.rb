@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-=======
-UNTRIMDIMS = {
-  imperial:       [49.0, 37.0],
-  super_royal:    [45.0, 31.0],
-  royal:          [43.0, 31.0],
-  super_median:   [37.0, 25.5],
-  median:         [35.0, 25.5],
-  super_chancery: [34.0, 22.5],
-  chancery:       [32.0, 22.5],
-  mezzo_median:   [26.5, 19.5]
-}
-
-ALT_F = {
- full_sheet:    'full sheet',
- folio:         'half sheet',
- agenda_quarto: 'tall quarter sheet',
- quarto:        'quarter sheet',
- octavo:        'eighth sheet',
- sixteen_mo:    'sixteenth sheet'
-}
->>>>>>> master
-
 class PaperSize
   attr_reader :name
   attr_reader :format
@@ -28,7 +5,6 @@ class PaperSize
   attr_reader :width
   attr_reader :area
 
-<<<<<<< HEAD
   UNTRIMDIMS = {
     imperial:       [49.0, 37.0],
     super_royal:    [45.0, 31.0],
@@ -44,12 +20,6 @@ class PaperSize
     @name   = name
     @format = format
     dims = get_dims(name, format)
-=======
-  def initialize(format, name)
-    @format = format
-    @name   = name
-    dims = get_dims(format, name)
->>>>>>> master
     @height = dims[0].round(1)
     @width  = dims[1].round(1)
     @area   = (height * width).round(1)
@@ -82,40 +52,13 @@ class PaperSize
     end
   end
 
-  def super?
-    name[0] == 's'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> master
-  end
-
-  def == other
-    return false unless other.is_a?(PaperSize)
-    self.format == other.format && self.name == other.name
->>>>>>> master
-  end
-
   def == other
     return false unless other.is_a?(PaperSize)
     self.name == other.name && self.format == other.format
   end
 
   def to_s
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     form = $single ? ALT_FORMAT[format] : format.upcase
-=======
-    form = $single ? ALT_F[format] : format.upcase
->>>>>>> master
-=======
-    form = $single ? ALT_F[format] : format.upcase
->>>>>>> master
-=======
-    form = $single ? ALT_F[format] : format.upcase
->>>>>>> master
     if $single
       ori = $landsc ? '(landscape) ' : '(portrait) '
     else
