@@ -85,7 +85,10 @@ class PaperSize
   def super?
     name[0] == 's'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> master
   end
 
   def == other
@@ -102,7 +105,11 @@ class PaperSize
   def to_s
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     form = $single ? ALT_FORMAT[format] : format.upcase
+=======
+    form = $single ? ALT_F[format] : format.upcase
+>>>>>>> master
 =======
     form = $single ? ALT_F[format] : format.upcase
 >>>>>>> master
