@@ -75,7 +75,7 @@ post '/sizeit' do
     p2 = sn[1]
     "<br>Since you found deckle on the top and bottom, it's very likely that it was printed on #{p1[:sh]} if it's #{p1[:fmt]}, or on #{p2[:sh]} if it's #{p2[:fmt]}."
   end
-  message << note
+  message << note unless $single
 
   larger, smaller = $landsc ? [width, height] : [height, width]
   ratio = "RATIO: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
