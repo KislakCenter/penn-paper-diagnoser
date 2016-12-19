@@ -23,9 +23,9 @@ class Diagnoser
     #   end
     # end
     # ---------------------------------------
-    # @papersizes = @names.map do |n|
+    # @papersizes = @names.flat_map do |n|
     #   @formats.map{ |f| PaperSize.new(n,f)}
-    # end.flatten
+    # end
     # ---------------------------------------
 
     @exclusion = Hash.new([])

@@ -80,7 +80,7 @@ post '/sizeit' do
 
   larger, smaller = $landsc ? [width, height] : [height, width]
   ratio = "RATIO: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
-  result << "<br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
+  result << "<br><br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
 
   params["result"] = result
   params["ratio"]  = ratio
