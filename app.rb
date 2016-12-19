@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
+
 require 'bundler/setup'
 require 'lib/diagnoser'
-
 require 'sinatra'
 
 get '/' do
@@ -22,6 +22,7 @@ post '/sizeit' do
     deckles.reverse!
   end
 
+<<<<<<< HEAD
   deckle_t, deckle_b, deckle_r, deckle_l = deckles
   if $single
     deckle_tobo = deckle_t && deckle_b
@@ -37,6 +38,13 @@ post '/sizeit' do
   d.sort_by_dim(:a)
 
   result = ''
+=======
+  d = Diagnoser.new
+  d.find_matches(height, width, chain)
+  d.sort_by_dim(:a)
+
+  result = ""
+>>>>>>> master
   res = d.get_results(deckle_tobo, deckle_side)
   case res.length
   when 0
