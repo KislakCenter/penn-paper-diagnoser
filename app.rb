@@ -33,6 +33,7 @@ post '/sizeit' do
   end
 
   d = Diagnoser.new
+<<<<<<< HEAD
   d.lock_format(:full_sheet) if $single && ! deckles.include?(false)
   d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
@@ -40,10 +41,15 @@ post '/sizeit' do
   result = ''
 =======
   d = Diagnoser.new
+=======
+>>>>>>> master
   d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
 
   result = ""
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
   res = d.get_results(deckle_tobo, deckle_side)
   case res.length
