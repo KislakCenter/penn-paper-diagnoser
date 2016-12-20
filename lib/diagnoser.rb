@@ -73,8 +73,8 @@ class Diagnoser
       deck      = 'top and bottom'
       condition = deckle_t && deckle_b
     end
-    sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eigth-sheets'}[format]
-    condition ? {fmt: format.to_s, deck: deck, sh: sheet_size} : nil
+    sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eighth-sheets'}[format]
+    condition ? {fmt: format.to_s.upcase.sub('SIXTEEN_MO', '16mo'), deck: deck, sh: sheet_size} : nil
   end
 
 # def super_check(ps1, ps2, dim = nil)
@@ -85,26 +85,3 @@ class Diagnoser
 # end
 end
 
-
-
-
-
-# q_only = false
-# q_poss = false
-# if deckle_t and ! $single
-#   res_forms = res.map(&:format)
-#   q_only = res_forms.uniq == [:quarto]
-#   q_poss = res_forms.include?(:quarto) unless q_only
-# end
-# res << "" if q_only # insert message
-# res << "" if q_poss # insert message
-
-# #Diagnoser
-# def sheet_note(res)
-#   q_only = false
-#   q_poss = false
-#   o_only = false
-#   o_poss = false
-#   res_forms = res.map(&:format)
-#   # universally, if you've got deck tobo in any format below folio, quarto --> half-sheets, octavo --> quarter-sheets, sextodecimo --> eight-sheets
-# end

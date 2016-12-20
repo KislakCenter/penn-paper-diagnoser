@@ -32,60 +32,67 @@ post '/sizeit' do
   end
 
   d = Diagnoser.new
-  d.lock_format(:full_sheet) if $single && ! deckles.include?(false)
+  d.lock_format(:full_sheet) if $single && !deckles.include?(false)
   d.find_matches(height, width, chain)
   d.sort_by_dim(:a)
 
   res     = d.get_results(deckle_tobo, deckle_side)
-  message = case res.length
-  when 0
-    "No known paper sizes match your description."
-  when 1
-    "The only available size is #{res[0]}."
-  when 2
-    imp_vs_mm_format = res.map(&:name) == %i(imperial mezzo_median) ? res[0].format : nil
-    "The smallest available size is #{res[0]}. <br> The second smallest available size is #{res[1]}."
-  when 3
-    comp1  = %i(quarto sixteen_mo).include?(res[0].format) ? 'wider' : 'taller'
-    comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
-    comp1, comp2 = comp2, comp1 if $landsc
-    "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. The more common #{res[2]} is both #{comp1} and #{comp2}."
-  end
-
-  if imp_vs_mm_format
-    other_format = {octavo: :folio, sixteen_mo: :quarto}[imp_vs_mm_format]
-    message << "<br>IMPERIAL and MEZZO-MEDIAN can be distinguished by the placement of the watermark." # If the watermark is ....
-  end # ^^^ Wording ^^^^
-
-  res_forms = res.map(&:format)
-# sn = %i(quarto octavo sixteen_mo).select{ |f| res_forms.include?(f) }.map{ |f| sheet_note(f, deckle_t, deckle_b) }.reject(&:nil?)#.compact
-  sn = %i(quarto octavo sixteen_mo).map{ |f| d.sheet_note(f, deckle_t, deckle_b) if res_forms.include?(f) }.compact
-  note = case sn.length
-  when 0
-    ''
-  when 1
-    p1 = sn[0]
-    if res.length == 1
-      "<br>Since you found deckle on the #{p1[:deck]}, it's verly likely that it was written/printed on #{p1[:sh]}."
-    else
-      "<br>If it's #{p1[:fmt]}, since you found deckle on the #{p1[:deck]}, it's verly likely that it was written/printed on #{p1[:sh]}."
+  message =
+    case res.length
+    when 0
+      "No known paper sizes match your description."
+    when 1
+      "The only available size is #{res[0]}."
+    when 2
+      imp_vs_mm_fmt = res.map(&:name) == %i(imperial mezzo_median) ? res[1].format : nil
+      "The smallest available size is #{res[0]}. "\
+      "<br> The second smallest available size is #{res[1]}."
+    when 3
+      comp1  = %i(quarto sixteen_mo).include?(res[0].format) ? 'wider' : 'taller'
+      comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
+      comp1, comp2 = comp2, comp1 if $landsc
+      "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. "\
+      "The more common #{res[2]} is both #{comp1} and #{comp2}."
     end
-  when 2
-    p1 = sn[0]
-    p2 = sn[1]
-    "<br>Since you found deckle on the top and bottom, it's very likely that it was printed on #{p1[:sh]} if it's #{p1[:fmt]}, or on #{p2[:sh]} if it's #{p2[:fmt]}."
+
+  if imp_vs_mm_fmt # why doesn't this break when undefined?
+    water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_mm_fmt]
+    message <<
+    "<br>If it's MEZZO-MEDIAN #{imp_vs_mm_fmt}, "\
+    "watermarks will appear in the center of the #{water_loc}."
   end
+
+  res_fmts     = res.map(&:format)
+# sn = %i(quarto octavo sixteen_mo).map{ |f| d.sheet_note(f, deckle_t, deckle_b) if res_forms.include?(f) }.compact
+  partial_fmts = %i(quarto octavo sixteen_mo).select{ |f| res_fmts.include?(f) }
+  sn           = partial_fmts.map{ |f| d.sheet_note(f, deckle_t, deckle_b) }.compact
+  note =
+    case sn.length
+    when 0
+      ''
+    when 1
+      p1 = sn[0]
+      if res.length == 1
+        "<br>Deckle on the #{p1[:deck]} "\
+        "indicates that it was written/printed on #{p1[:sh]}."
+      else
+        "<br>If it's #{p1[:fmt]}, deckle on the #{p1[:deck]} "\
+        "indicates that it was written/printed on #{p1[:sh]}."
+      end
+    when 2
+      p1 = sn[0]
+      p2 = sn[1]
+      "<br>Deckle on the top and bottom "\
+      "indicates that it was written/printed on #{p1[:sh]} if it's #{p1[:fmt]}, "\
+      "or on #{p2[:sh]} if it's #{p2[:fmt]}."
+    end
   message << note unless $single
 
   larger, smaller = $landsc ? [width, height] : [height, width]
-  ratio = "RATIO: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
+  ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
   message << "<br><br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
 
   params["result"] = message
   params["ratio"]  = ratio
   erb :sizeit, locals: params, layout: false
 end
-
-
-
-
