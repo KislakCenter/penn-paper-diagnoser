@@ -4,7 +4,7 @@ class Diagnoser
   attr_reader :sorted_matches
 
   def initialize
-    @formats = %i(folio agenda_quarto quarto octavo sixteen_mo)
+    @formats = %i(folio agenda_quarto quarto octavo sixteen_mo thirtytwo_mo sixtyfour_mo)
     @names   = %i(imperial super_royal royal super_median median super_chancery chancery mezzo_median)
     @formats << :full_sheet if $single
 
@@ -25,12 +25,12 @@ class Diagnoser
     # ---------------------------------------
 
     @exclusion = Hash.new([])
-    @exclusion['vertical']   = %i(quarto sixteen_mo full_sheet)
-    @exclusion['horizontal'] = %i(folio agenda_quarto octavo)
+    @exclusion['vertical']   = %i(quarto sixteen_mo sixtyfour_mo full_sheet)
+    @exclusion['horizontal'] = %i(folio agenda_quarto octavo thirtytwo_mo)
   end
 
   def lock_format(f)
-    @exclusion = Hash.new(%i[folio agenda_quarto quarto octavo sixteen_mo])
+    @exclusion = Hash.new(@formats - [f])
   end
 
   def find_matches(height, width, chain)
@@ -74,7 +74,7 @@ class Diagnoser
       condition = deckle_t && deckle_b
     end
     sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eighth-sheets'}[format]
-    condition ? {fmt: format.to_s.upcase.sub('SIXTEEN_MO', '16mo'), deck: deck, sh: sheet_size} : nil
+    condition ? {fmt: format.to_s.upcase.small_fmt_sub, deck: deck, sh: sheet_size} : nil
   end
 
 # def super_check(ps1, ps2, dim = nil)

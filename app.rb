@@ -4,6 +4,10 @@ require 'bundler/setup'
 require 'lib/diagnoser'
 require 'sinatra'
 
+#
+require 'lib/small_fmt_sub'
+#
+
 get '/' do
   erb :index
 end
@@ -55,6 +59,7 @@ post '/sizeit' do
       "The more common #{res[2]} is both #{comp1} and #{comp2}."
     end
 
+# imp_vs_mm_fmt ||= false
   if imp_vs_mm_fmt # why doesn't this break when undefined?
     water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_mm_fmt]
     message <<

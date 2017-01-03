@@ -66,7 +66,7 @@ class PaperSize
     else
       ori = ''
     end
-    "#{name.upcase} #{form} ".gsub('_' , '-').sub('SIXTEEN-MO' , '16mo') + "#{ori} #{dimensions}"
+    "#{name.upcase} #{form} ".gsub('_' , '-').small_fmt_sub + "#{ori} #{dimensions}"
   end
 
   ALT_FORMAT = {
