@@ -67,31 +67,33 @@ post '/sizeit' do
     "watermarks will appear in the center of the #{water_loc}."
   end
 
-  res_fmts     = res.map(&:format)
-# sn = %i(quarto octavo sixteen_mo).map{ |f| d.sheet_note(f, deckle_t, deckle_b) if res_forms.include?(f) }.compact
-  partial_fmts = %i(quarto octavo sixteen_mo).select{ |f| res_fmts.include?(f) }
-  sn           = partial_fmts.map{ |f| d.sheet_note(f, deckle_t, deckle_b) }.compact
-  note =
-    case sn.length
-    when 0
-      ''
-    when 1
-      p1 = sn[0]
-      if res.length == 1
-        "<br>Deckle on the #{p1[:deck]} "\
-        "indicates that it was written/printed on #{p1[:sh]}."
-      else
-        "<br>If it's #{p1[:fmt]}, deckle on the #{p1[:deck]} "\
-        "indicates that it was written/printed on #{p1[:sh]}."
+  unless $single
+    res_fmts     = res.map(&:format)
+  # sn = %i(quarto octavo sixteen_mo).map{ |f| d.sheet_note(f, deckle_t, deckle_b) if res_forms.include?(f) }.compact
+    partial_fmts = %i(quarto octavo sixteen_mo).select{ |f| res_fmts.include?(f) }
+    sn           = partial_fmts.map{ |f| d.sheet_note(f, deckle_t, deckle_b) }.compact
+    note =
+      case sn.length
+      when 0
+        ''
+      when 1
+        p1 = sn[0]
+        if res.length == 1
+          "<br>Deckle on the #{p1[:deck]} "\
+          "indicates that it was written/printed on #{p1[:sh]}."
+        else
+          "<br>If it's #{p1[:fmt]}, deckle on the #{p1[:deck]} "\
+          "indicates that it was written/printed on #{p1[:sh]}."
+        end
+      when 2
+        p1 = sn[0]
+        p2 = sn[1]
+        "<br>Deckle on the top and bottom "\
+        "indicates that it was written/printed on #{p1[:sh]} if it's #{p1[:fmt]}, "\
+        "or on #{p2[:sh]} if it's #{p2[:fmt]}."
       end
-    when 2
-      p1 = sn[0]
-      p2 = sn[1]
-      "<br>Deckle on the top and bottom "\
-      "indicates that it was written/printed on #{p1[:sh]} if it's #{p1[:fmt]}, "\
-      "or on #{p2[:sh]} if it's #{p2[:fmt]}."
-    end
-  message << note unless $single
+    message << note
+  end
 
   larger, smaller = $landsc ? [width, height] : [height, width]
   ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
