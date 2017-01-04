@@ -70,12 +70,14 @@ class PaperSize
   end
 
   ALT_FORMAT = {
-   full_sheet:    'full sheet',
-   folio:         'half sheet',
-   agenda_quarto: 'tall quarter sheet',
-   quarto:        'quarter sheet',
-   octavo:        'eighth sheet',
-   sixteen_mo:    'sixteenth sheet'
+    full_sheet:    'full sheet',
+    folio:         'half sheet',
+    agenda_quarto: 'tall quarter sheet',
+    quarto:        'quarter sheet',
+    octavo:        'eighth sheet',
+    sixteen_mo:    'sixteenth sheet',
+    thirtytwo_mo:  'thirty-second sheet',
+    sixtyfour_mo:  'sixty-fourth sheet'
   }
 
   def dimensions
