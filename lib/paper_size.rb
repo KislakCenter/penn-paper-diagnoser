@@ -13,7 +13,7 @@ class PaperSize
     median:         [35.0, 25.0],
     super_chancery: [33.0, 23.0],
     chancery:       [31.5, 23.0],
-    mezzo_median:   [25.0, 17.5]
+    half_median:    [25.0, 17.5]
   }
 
   def initialize(name, format)
