@@ -5,7 +5,7 @@ class Diagnoser
 
   def initialize
     @formats = %i(folio agenda_quarto quarto octavo sixteen_mo thirtytwo_mo sixtyfour_mo)
-    @names   = %i(imperial super_royal royal super_median median super_chancery chancery mezzo_median)
+    @names   = %i(imperial super_royal royal super_median median super_chancery chancery half_median)
     @formats << :full_sheet if $single
 
     @papersizes = []

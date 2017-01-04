@@ -48,7 +48,7 @@ post '/sizeit' do
     when 1
       "The only available size is #{res[0]}."
     when 2
-      imp_vs_mm_fmt = res.map(&:name) == %i(imperial mezzo_median) ? res[1].format : nil
+      imp_vs_hm_fmt = res.map(&:name) == %i(imperial half_median) ? res[1].format : nil
       "The smallest available size is #{res[0]}. "\
       "<br> The second smallest available size is #{res[1]}."
     when 3
@@ -59,11 +59,11 @@ post '/sizeit' do
       "The more common #{res[2]} is both #{comp1} and #{comp2}."
     end
 
-# imp_vs_mm_fmt ||= false
-  if imp_vs_mm_fmt # why doesn't this break when undefined?
-    water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_mm_fmt]
+# imp_vs_hm_fmt ||= false
+  if imp_vs_hm_fmt # why doesn't this break when undefined?
+    water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
     message <<
-    "<br>If it's MEZZO-MEDIAN #{imp_vs_mm_fmt}, "\
+    "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt}, "\
     "watermarks will appear in the center of the #{water_loc}."
   end
 
