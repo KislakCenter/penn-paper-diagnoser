@@ -63,7 +63,7 @@ post '/sizeit' do
   if imp_vs_hm_fmt # why doesn't this break when undefined?
     water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
     message <<
-    "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt}, "\
+    "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt.to_s.upcase}, "\
     "watermarks will appear in the center of the #{water_loc}."
   end
 
