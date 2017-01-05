@@ -75,9 +75,9 @@ class PaperSize
     agenda_quarto: 'tall quarter sheet',
     quarto:        'quarter sheet',
     octavo:        'eighth sheet',
-    sixteen_mo:    'sixteenth sheet',
-    thirtytwo_mo:  'thirty-second sheet',
-    sixtyfour_mo:  'sixty-fourth sheet'
+    sixteen_mo:    '16th sheet',
+    thirtytwo_mo:  '32th sheet',
+    sixtyfour_mo:  '64th sheet'
   }
 
   def dimensions
