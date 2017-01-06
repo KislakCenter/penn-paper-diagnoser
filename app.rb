@@ -61,11 +61,32 @@ post '/sizeit' do
 
 # imp_vs_hm_fmt ||= false
   if imp_vs_hm_fmt # why doesn't this break when undefined?
-    water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
+  # water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
+
+  # def water_loc(fmt)
+  # case fmt
+  water_loc =
+    case imp_vs_hm_fmt
+    when :octavo
+      "traces of watermarks will be found at the top of the gutter. "
+    when :sixteen_mo
+       "watermarks will appear in characteristic locations." #PLACEHOLDER
+    else
+      loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
+      "watermarks will appear in the center of the #{loc}."
+    end
+  # end
+
+
+
     message <<
-    "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt.to_s.upcase}, "\
-    "watermarks will appear in the center of the #{water_loc}."
+    "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt.to_s.upcase.sub('_' , '-').small_fmt_sub}, "\
+    "#{water_loc}"
+  # "watermarks will appear in the center of the #{water_loc}."
   end
+
+
+
 
   unless $single
     res_fmts     = res.map(&:format)
