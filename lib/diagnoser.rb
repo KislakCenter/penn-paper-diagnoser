@@ -50,7 +50,7 @@ class Diagnoser
     return []    if sm0.nil?
     return [sm0] if sm1.nil?
     if deckle_tobo && deckle_side
-      equal_area = sm1.area == sm0.area
+      equal_area = (sm1.area == sm0.area)
       equal_area ? ["#{sm0} or #{sm1}"] : [sm0]
     elsif deckle_tobo || deckle_side
       dim = deckle_tobo ? :h : :w
@@ -76,12 +76,5 @@ class Diagnoser
     sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eighth-sheets'}[format]
     condition ? {fmt: format.to_s.upcase.small_fmt_sub, deck: deck, sh: sheet_size} : nil
   end
-
-# def super_check(ps1, ps2, dim = nil)
-#   return [ps1, ps2] unless ps1.name == :chancery && ps2.name == :super_chancery
-#   med = PaperSize.new(ps1.format, :median)
-#   return [ps1, ps2] if dim && med.measure(dim) > ps1.measure(dim)
-#   [ps1, ps2, med]
-# end
 end
 
