@@ -47,7 +47,7 @@ post '/sizeit' do
       "No known paper sizes match your description."
     when 1
       "The only available size is #{res[0]}."
-    when 2
+    when 2 ##### NO IMP_VS_HM WHEN SINGLE SHEET
       imp_vs_hm_fmt = res.map(&:name) == %i(imperial half_median) ? res[1].format : nil
       "The smallest available size is #{res[0]}. "\
       "<br> The second smallest available size is #{res[1]}."
@@ -60,27 +60,22 @@ post '/sizeit' do
     end
 # .......................................
 # imp_vs_hm_fmt ||= false
-  if imp_vs_hm_fmt # why doesn't this break when undefined?
-  # water_loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
-
-    # def water_loc(fmt)
-    # case fmt
+# if imp_vs_hm_fmt # why doesn't this break when undefined?
+  if imp_vs_hm_fmt && !$single
     water_loc =
       case imp_vs_hm_fmt
       when :octavo
         "traces of watermarks will be found at the top of the gutter. "
       when :sixteen_mo
-         "watermarks will appear in characteristic locations." #PLACEHOLDER
+      #  "watermarks will appear in characteristic locations." #PLACEHOLDER
+         "traces of watermarks will be found at the top right corner."
       else
         loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
         "watermarks will appear in the center of the #{loc}."
       end
-    # end
-
     message <<
     "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt.to_s.upcase.sub('_' , '-').small_fmt_sub}, "\
     "#{water_loc}"
-  # "watermarks will appear in the center of the #{water_loc}."
   end
 # .......................................
 
