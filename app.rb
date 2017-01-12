@@ -47,7 +47,7 @@ post '/sizeit' do
       "No known paper sizes match your description."
     when 1
       "The only available size is #{res[0]}."
-    when 2 ##### NO IMP_VS_HM WHEN SINGLE SHEET
+    when 2
       imp_vs_hm_fmt = res.map(&:name) == %i(imperial half_median) ? res[1].format : nil
       "The smallest available size is #{res[0]}. "\
       "<br> The second smallest available size is #{res[1]}."
@@ -67,7 +67,6 @@ post '/sizeit' do
       when :octavo
         "traces of watermarks will be found at the top of the gutter. "
       when :sixteen_mo
-      #  "watermarks will appear in characteristic locations." #PLACEHOLDER
          "traces of watermarks will be found at the top right corner."
       else
         loc = {folio: 'page', quarto: 'gutter'}[imp_vs_hm_fmt]
@@ -108,7 +107,7 @@ post '/sizeit' do
     message << note
   end
 
-  larger, smaller = $landsc ? [width, height] : [height, width]
+  larger, smaller = $landsc ? [width, height] : [height, width] # is this contradictory with the new 'H/W' language?
   ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
   message << "<br><br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
 
@@ -116,3 +115,4 @@ post '/sizeit' do
   params["ratio"]  = ratio
   erb :sizeit, locals: params, layout: false
 end
+#
