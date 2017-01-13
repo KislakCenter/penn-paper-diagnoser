@@ -12,17 +12,6 @@ class Diagnoser
     @names.each do |n|; @formats.each do |f|
       @papersizes << PaperSize.new(n,f)
     end; end
-    # ---------------------------------------
-    # @formats.each do |f|
-    #   @names.each do |n|
-    #     @papersizes << PaperSize.new(n,f)
-    #   end
-    # end
-    # ---------------------------------------
-    # @papersizes = @names.flat_map do |n|
-    #   @formats.map{ |f| PaperSize.new(n,f) }
-    # end
-    # ---------------------------------------
 
     @exclusion = Hash.new([])
     @exclusion['vertical']   = %i(quarto sixteen_mo sixtyfour_mo full_sheet)
