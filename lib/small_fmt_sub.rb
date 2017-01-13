@@ -1,6 +1,5 @@
 class String
   def small_fmt_sub
-  puts self
   s = [
       %w(SIXTEEN-MO   16mo),
       %w(THIRTYTWO-MO 32mo),
