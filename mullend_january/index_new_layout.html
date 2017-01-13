@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Needham Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="http://penn-paper-diagnoser.herokuapp.com/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://penn-paper-diagnoser.herokuapp.com/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/styles_new_layout.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+    function MM_showHideLayers() { //v9.0
+      var i,p,v,obj,args=MM_showHideLayers.arguments;
+      for (i=0; i<(args.length-2); i+=3)
+      with (document) if (getElementById && ((obj=getElementById(args[i]))!=null)) { v=args[i+2];
+        if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+        obj.visibility=v; }
+    }
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <!--
+     <a href="http://schoenberginstitute.org">
+   <div id="logoholder" class="img-responsive img-center">
+<div id="logotext"><img src="paper_sizer_logo_dt_text.gif" width="458" height="151" alt="SIMS" border="0"></div>
+  </div></a> -->
+
+<div class="container text-center">
+<div id="apptitle"><a href="about.html" target="_blank">About</a></div>
+
+
+  <div>
+        <h5><strong>Enter your paper details</strong></h5>
+<form action="/sizeit" method="post" target="resultframe">
+
+<div class="form-group object_type">
+<!-- <h5><strong>We are dealing with</strong><br /> -->
+    <label class="radio-inline control-label">
+      <input type="radio" name="object_type" value="bound" checked="checked">Pages in a Book
+    </label>
+    <label class="radio-inline control-label">
+      <input type="radio" name="object_type" value="single">A Single Sheet
+    </label>
+    <br />
+</div>
+
+<div class="form-group form-group-shorter">
+
+  <input class="form-control" id="paper_height" name="paper_height" placeholder="Height (cm)" type="text">
+</div>
+
+<div class="form-group form-group-shorter">
+
+  <input class="form-control" id="paper_width" name="paper_width" placeholder="Width (cm)" type="text">
+</div>
+
+
+<div class="form-group">
+<h5><strong>The chain lines run</strong><br />
+    <label class="radio-inline control-label">
+      <input type="radio" name="chain_lines" value="vertical" >Vertical
+    </label>
+    <label class="radio-inline control-label">
+      <input type="radio" name="chain_lines" value="horizontal">Horizontal
+    </label>
+    <label class="radio-inline control-label">
+      <input type="radio" name="chain_lines"  value="unsure" checked="checked">Can't tell
+    </label>
+    <br /><br />
+    <div class="note-text"><strong>Note:</strong> Laid lines always run perpendicular to chain lines and are easier to see in most digitized images.</div>
+</div>
+
+
+<div class="form-group deckles">
+<strong>Deckle appears on the</strong><br />
+<!-- <label class="checkbox-inline">
+    <input type="checkbox" id="deckle_side" name="deckle_side" value="outer">Side Margins
+</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label class="checkbox-inline">
+    <input type="checkbox" id="deckle_tobo" name="deckle_tobo" value="top">Top and Bottom
+</label> -->
+
+<label class="checkbox-inline">
+    <input type="checkbox" id="top" name="top" value="checkd">Top
+</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label class="checkbox-inline">
+    <input type="checkbox" id="bo" name="bo" value="checkd">Bottom
+</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label class="checkbox-inline">
+     <input type="checkbox" id="ri" name="ri" value="checkd">Right
+</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label class="checkbox-inline">
+    <input type="checkbox" id="lef" name="lef" value="checkd">Left (single sheet only)
+</label>
+</div>
+<p></p>
+
+<button type="submit" class="btn btn-primary" onClick="MM_showHideLayers('resultframe','','show')" >Calculate</button>
+<input type="reset" onClick="MM_showHideLayers('resultframe','','hide')" value="Clear">
+</form>
+<p></p>
+<iframe name="resultframe" id="resultframe" src=""></iframe>
+ <br />
+
+
+      </div>
+
+
+ <a href="http://schoenberginstitute.org">
+   <div id="logoholder2" class="img-responsive">
+<img src="images/sims_logo.jpg" align="left" class="img-responsive" alt="SIMS" border="0"></a>
+
+<img src="followus.gif" class="img-responsive" align="right" alt="Folloe SIMS"><br />
+</div>
+<br /><div style="clear: both;">Visit us at <a href="http://schoenberginstitute.org">Schoenberginstitute.org</a></div>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://penn-paper-diagnoser.herokuapp.com/vendor/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
