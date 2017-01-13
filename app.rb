@@ -115,4 +115,4 @@ post '/sizeit' do
   params["ratio"]  = ratio
   erb :sizeit, locals: params, layout: false
 end
-#
+

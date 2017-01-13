@@ -20,7 +20,7 @@ class Diagnoser
     # end
     # ---------------------------------------
     # @papersizes = @names.flat_map do |n|
-    #   @formats.map{ |f| PaperSize.new(n,f)}
+    #   @formats.map{ |f| PaperSize.new(n,f) }
     # end
     # ---------------------------------------
 
