@@ -49,6 +49,7 @@ class Diagnoser
       second_place ? [sm0, second_place] : [sm0]
     else
       sm2 = @sorted_matches[2]
+      return [sm0, sm1] if sm2.nil?
       median_exception = [sm0, sm1, sm2].map(&:name) == %i(chancery super_chancery median)
       median_exception ? [sm0, sm1, sm2] : [sm0, sm1]
     end
