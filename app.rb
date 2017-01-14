@@ -81,7 +81,6 @@ post '/sizeit' do
 
   unless $single
     res_fmts     = res.map(&:format)
-  # sn = %i(quarto octavo sixteen_mo).map{ |f| d.sheet_note(f, deckle_t, deckle_b) if res_forms.include?(f) }.compact
     partial_fmts = %i(quarto octavo sixteen_mo).select{ |f| res_fmts.include?(f) }
     sn           = partial_fmts.map{ |f| d.sheet_note(f, deckle_t, deckle_b) }.compact
     note =
