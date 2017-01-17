@@ -60,14 +60,14 @@ class PaperSize
   end
 
   def to_s
-    fmt = $single ? ALT_FORMAT[format] : format.upcase
+    fmt = $single ? ALT_FORMAT[format] : format
     if $single
       ori = $landsc ? '(landscape) ' : '(portrait) '
     else
       ori = ''
     end
   # "#{name.upcase} #{fmt} ".gsub('_' , '-').small_fmt_sub + "#{ori} #{dimensions}"
-    "#{name.upcase.sub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
+    "#{name.to_s.upcase.sub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
   end
 
   ALT_FORMAT = {
