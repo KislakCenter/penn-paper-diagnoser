@@ -64,8 +64,8 @@ class Diagnoser
       condition = deckle_t && deckle_b
     end
     sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eighth-sheets'}[format]
-    condition ? {fmt: format.to_s.upcase.small_fmt_sub, deck: deck, sh: sheet_size} : nil
   # condition ? {fmt: format.to_s.upcase.small_fmt_sub, deck: deck, sh: sheet_size} : nil
+    condition ? {fmt: fmt_str(fmt), deck: deck, sh: sheet_size} : nil
   end
 end
 
