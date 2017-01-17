@@ -102,13 +102,15 @@ body {
 
 input[type="reset"] {
 	font-size: 14px;
-	padding-top: 4px;
+	/*padding-top: 4px;
 	padding-bottom: 6px;
 	padding-left: 10px;
 	padding-right: 10px;
-	margin-left: 20px;
+  margin-left: 20px;*/
 	color: #900;
+	width: 85px;
 }
+
 #resultframe {
 	text-align: center;
 	overflow: visible;
@@ -225,7 +227,3 @@ body {
 
 
 
-
-.fwb{
-    width: 500px;
-}
