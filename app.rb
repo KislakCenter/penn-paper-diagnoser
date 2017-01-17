@@ -73,8 +73,11 @@ post '/sizeit' do
         "watermarks will appear in the center of the #{loc}."
       end
     message <<
-    "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt.to_s.upcase.sub('_' , '-').small_fmt_sub}, "\
+  # "<br>If it's HALF-MEDIAN #{imp_vs_hm_fmt.to_s.upcase.sub('_' , '-').small_fmt_sub}, "\
+  # "#{water_loc}"
+    "<br>If it's HALF-MEDIAN #{fmt_str(imp_vs_hm_fmt)}, "\
     "#{water_loc}"
+
   end
 # .......................................
 
