@@ -160,7 +160,7 @@ body {
 	background-image: none;
 }
 
-#apptitle {
+#logoholder {
 	background-image: url(images/paper_sizer_logo_mobile2.gif);
 	background-size: 100% auto;
 	border: none;
@@ -209,7 +209,7 @@ body {
 
 @media screen and (max-device-width: 960px) and (orientation: landscape){
 
-#apptitle {
+#logoholder {
 	background-image: url(images/paper_sizer_logo_mobile2.gif);
 	background-size: 100% auto;
 	border: none;
