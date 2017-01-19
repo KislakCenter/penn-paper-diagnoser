@@ -17,7 +17,7 @@ body {
 	background-size: cover;
 }
 
-#logoholder {
+/*#logoholder {
 	background-image: url(images/paper_sizer_logo_dt_back.jpg);
 	height: 170px;
 	width: 75%;
@@ -35,7 +35,7 @@ body {
 	border-left-color: #006;
 	border-radius: 20px 20px 0px 0px;
 	background-repeat: repeat-x;
-}
+}*/
 
 #logoholder2 {
 	height: 100px;
@@ -160,7 +160,7 @@ body {
 	background-image: none;
 }
 
-#logoholder {
+#apptitle {
 	background-image: url(images/paper_sizer_logo_mobile2.gif);
 	background-size: 100% auto;
 	border: none;
@@ -184,9 +184,9 @@ body {
 }
 
 
-#apptitle {
+/*#apptitle {
 	display: none;
-}
+}*/
 
 .form-group-shorter {
     display:inline-block;
@@ -209,7 +209,7 @@ body {
 
 @media screen and (max-device-width: 960px) and (orientation: landscape){
 
-#logoholder {
+#apptitle {
 	background-image: url(images/paper_sizer_logo_mobile2.gif);
 	background-size: 100% auto;
 	border: none;
