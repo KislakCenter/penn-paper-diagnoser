@@ -56,7 +56,7 @@ post '/sizeit' do
       comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
       comp1, comp2 = comp2, comp1 if $landsc
       "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. "\
-      "The more common #{res[2]} is both #{comp1} and #{comp2}."
+      "#{res[2]} is both #{comp1} and #{comp2}."
     end
 # .......................................
 # imp_vs_hm_fmt ||= false
