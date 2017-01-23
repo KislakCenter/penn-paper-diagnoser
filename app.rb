@@ -58,9 +58,8 @@ post '/sizeit' do
       "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. "\
       "#{res[2]} is both #{comp1} and #{comp2}."
     end
-# .......................................
-# imp_vs_hm_fmt ||= false
-# if imp_vs_hm_fmt # why doesn't this break when undefined?
+
+  imp_vs_hm_fmt ||= nil
   if imp_vs_hm_fmt && !$single
     water_loc =
       case imp_vs_hm_fmt
@@ -75,7 +74,7 @@ post '/sizeit' do
     message <<
     "<br>If it's HALF-MEDIAN #{fmt_str(imp_vs_hm_fmt)}, #{water_loc}"
   end
-# .......................................
+
 
 
   unless $single
@@ -107,7 +106,7 @@ post '/sizeit' do
 
   larger, smaller = $landsc ? [width, height] : [height, width] # is this contradictory with the new 'H/W' language?
   ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
-  message << "<br><br>#{ratio}" unless height == 0 || width == 0 # # # # # # # # #
+  message << "<br><br>#{ratio}" unless height == 0 || width == 0
 
   params["result"] = message
   params["ratio"]  = ratio
