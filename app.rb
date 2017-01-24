@@ -113,3 +113,4 @@ post '/sizeit' do
   erb :sizeit, locals: params, layout: false
 end
 
+# please check either horizontal or vertical for the chain lines

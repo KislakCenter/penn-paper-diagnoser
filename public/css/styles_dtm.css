@@ -111,6 +111,19 @@ input[type="reset"] {
 	width: 85px;
 }
 
+#apptitlem {
+	display: none;
+}
+
+#divabout {
+	display: none;
+}
+.decklesm {
+	display: none;;
+}
+
+
+
 #resultframe {
 	text-align: center;
 	overflow: visible;
@@ -150,33 +163,42 @@ input[type="reset"] {
 
 html {
     height: 100%;
-	padding-top: 2px;
+		padding: 0px;
+	  margin: 0px;
+	  padding-top: 3px;
 }
-
 
 
 body {
     background-color: #fbfbfb;
 	background-image: none;
-}
-
-#apptitle {
-	background-image: url(images/paper_sizer_logo_mobile2.gif);
-	background-size: 100% auto;
-	border: none;
-	outline: 0;
-	background-repeat: no-repeat;
-	height: 100px;
-	width: 80%;
-	border-radius: 0px;
+	padding: 0px;
+	margin: 0px;
 }
 
 
 .container {
+	margin-top: 0px;
 	border: none;
-	width: 95%;
+	width: 96%;
 	background-color: #fbfbfb;
-	background-image: none !important;
+	background-image: url(../images/paper_sizer_logo_dt_back2.jpg);
+	background-repeat: no-repeat;
+}
+
+#apptitle {
+	display: none;
+}
+
+#apptitlem {
+	/*	background-image: none !important;  */
+	display: block;
+	background-image: url(../images/app_title_desktop_white.gif);
+	background-size: 95%;
+	background-repeat: no-repeat;
+	height: 50px;
+	width: 100%;
+	background-position: center 8px;
 }
 
 #logotext {
@@ -184,10 +206,21 @@ body {
 }
 
 
-/*#apptitle {
-	display: none;
-}*/
 
+#divabout {
+	display: block;
+	height: auto;
+	width: 96%;
+	text-align: right;
+    padding-top: 3px;
+	padding-right: 5px;
+}
+
+#divabout a:link, #divabout a:visited {
+	text-decoration: none;
+	color: #fff;
+
+}
 .form-group-shorter {
     display:inline-block;
     width: 40%;
@@ -198,7 +231,22 @@ body {
 	font-size: 12px;
 }
 .deckles {
+	display: none;
+}
+.decklesm {
+	display: block;
 	padding-top: 0px;
+	text-align: center;
+}
+
+#tbldeckles td {
+	text-align: left;
+	padding-right: 10px;
+}
+
+
+#resultframe {
+	width: 99%;
 }
 
 #followus {
@@ -223,6 +271,23 @@ body {
     width: 30%;
 }
 
+#apptitlem {
+	display: block;
+	background-image: url(../images/app_title_desktop_white.gif);
+	background-size: 60%;
+	background-repeat: no-repeat;
+	height: 50px;
+	width: 100%;
+	background-color: none;
+	background-position: center 5px;
+}
+
+.deckles {
+	display: block;
+}
+.decklesm {
+	display: none;
+}
 
 
 
