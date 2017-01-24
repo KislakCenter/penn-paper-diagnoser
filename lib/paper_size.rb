@@ -66,7 +66,7 @@ class PaperSize
     else
       ori = ''
     end
-    "#{name.to_s.upcase.gsub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
+    "#{name.to_s.upcase.sub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
   end
 
   ALT_FORMAT = {

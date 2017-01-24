@@ -7,7 +7,7 @@ def fmt_str(fmt)
   when :sixtyfour_mo
     "64mo"
   else
-    fmt.to_s.upcase
+    fmt.to_s.upcase.sub('_' , '-')
   end
 end
 
