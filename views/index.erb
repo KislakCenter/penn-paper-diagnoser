@@ -23,16 +23,14 @@
 </div>
 
 
+
 <div class="form-group">
-<h5><strong>The chain lines run</strong><br />
-    <label class="radio-inline control-label">
-      <input type="radio" name="chain_lines" value="vertical" >Vertical
-    </label>
-    <label class="radio-inline control-label">
-      <input type="radio" name="chain_lines" value="horizontal">Horizontal
-    </label>
-    <label class="radio-inline control-label">
-      <input type="radio" name="chain_lines"  value="unsure" checked="checked">Can't tell
+<strong>The chain lines are</strong><br />
+   <label class="checkbox-inline">
+        <input type="checkbox" id="chainlinesv" name="chainlinesv" value="checkd" >Vertical
+    </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <label class="checkbox-inline">
+       <input type="checkbox" id="chainlinesh" name="chainlinesh" value="checkd">Horizontal
     </label>
     <br /><br />
     <div class="note-text"><strong>Note:</strong> Laid lines always run perpendicular to chain lines and are easier to see in most digitized images.</div>
@@ -63,6 +61,24 @@
 </div>
 <p></p>
 
+
+<div class="form-group decklesm">
+<strong>Deckle appears on the</strong><br />
+<table id="tbldeckles" align="center">
+<tr><td><label class="checkbox-inline">
+    <input type="checkbox" id="top" name="top" value="checkd">Top
+</label></td>
+<td><label class="checkbox-inline">
+    <input type="checkbox" id="bo" name="bo" value="checkd">Bottom
+</label></td></tr>
+<tr><td><label class="checkbox-inline">
+     <input type="checkbox" id="ri" name="ri" value="checkd">Right
+</label></td>
+<td><label class="checkbox-inline">
+    <input type="checkbox" id="lef" name="lef" value="checkd">Left (single sheet only)
+</label></td></tr>
+</table>
+</div>
 
 <button type="submit" class="btn btn-primary" onClick="MM_showHideLayers('resultframe','','show')" >Calculate</button>
 <input type="reset" onClick="MM_showHideLayers('resultframe','','hide')" value="Clear" class="btn btn-default">
