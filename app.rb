@@ -15,7 +15,17 @@ end
 post '/sizeit' do
   height   = params["paper_height"].to_f
   width    = params["paper_width"].to_f
-  chain    = params["chain_lines"]
+  chainv   = params["chainlinesv"] == 'checkd'
+  chainh   = params["chainlinesh"] == 'checkd'
+  chain    = if chainv && chainh
+              :both
+            elsif chainv
+              'vertical'
+            elsif chainh
+              'horizontal'
+            else
+              'unknown'
+            end
   $single  = params["object_type"] == 'single'
   $landsc  = $single && width > height
   deckles  = %w(top bo ri lef).map{ |d| params[d] == 'checkd' }
@@ -108,9 +118,12 @@ post '/sizeit' do
   ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
   message << "<br><br>#{ratio}" unless height == 0 || width == 0
 
+
+  message = 'Please check either Vertical or Horizontal for the chain lines.' if chain == :both
+
   params["result"] = message
   params["ratio"]  = ratio
   erb :sizeit, locals: params, layout: false
 end
 
-# please check either horizontal or vertical for the chain lines
+# p
