@@ -23,7 +23,7 @@ post '/sizeit' do
              end
   $single  = params["object_type"] == 'single'
   $landsc  = $single && width > height
-  deckles  = %w(top bo ri lef).map{ |d| params[d] == 'checkd' }
+  deckles  = %w(top bottom right left).map{ |d| params[d] == 'checkd' }
 
   if $landsc # flip all parameters
     height, width = width, height
@@ -112,7 +112,6 @@ post '/sizeit' do
   larger, smaller = $landsc ? [width, height] : [height, width] # is this contradictory with the new 'H/W' language?
   ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
   message << "<br><br>#{ratio}" unless height == 0 || width == 0
-
 
   message = 'Please check either Vertical or Horizontal for the chain lines.' if chain == :both
 
