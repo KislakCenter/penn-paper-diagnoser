@@ -17,22 +17,17 @@ post '/sizeit' do
   width    = params["paper_width"].to_f
   chainv   = params["chainlinesv"] == 'checkd'
   chainh   = params["chainlinesh"] == 'checkd'
-  chain    = if chainv && chainh
-              :both
-            elsif chainv
-              'vertical'
-            elsif chainh
-              'horizontal'
-            else
-              'unknown'
-            end
+  chain    = if chainv && chainh then :both
+             elsif chainv        then :vertical
+             elsif chainh        then :horizontal
+             end
   $single  = params["object_type"] == 'single'
   $landsc  = $single && width > height
   deckles  = %w(top bo ri lef).map{ |d| params[d] == 'checkd' }
 
   if $landsc # flip all parameters
     height, width = width, height
-    chain = {'vertical' => 'horizontal', 'horizontal' => 'vertical'}[chain]
+    chain = {vertical: :horizontal, horizontal: :vertical}[chain]
     deckles.reverse!
   end
 
@@ -126,4 +121,3 @@ post '/sizeit' do
   erb :sizeit, locals: params, layout: false
 end
 
-# p

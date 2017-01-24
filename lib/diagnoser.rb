@@ -14,8 +14,8 @@ class Diagnoser
     end; end
 
     @exclusion = Hash.new([])
-    @exclusion['vertical']   = %i(quarto sixteen_mo sixtyfour_mo full_sheet)
-    @exclusion['horizontal'] = %i(folio agenda_quarto octavo thirtytwo_mo)
+    @exclusion[:vertical]   = %i(quarto sixteen_mo sixtyfour_mo full_sheet)
+    @exclusion[:horizontal] = %i(folio agenda_quarto octavo thirtytwo_mo)
   end
 
   def lock_format(f)
