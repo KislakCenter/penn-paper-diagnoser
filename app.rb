@@ -49,18 +49,18 @@ post '/sizeit' do
   message =
     case res.length
     when 0
-      "No known paper sizes match your description."
+      "No known flavors match your description."
     when 1
-      "The only available size is #{res[0]}."
+      "The only available flavor is #{res[0]}."
     when 2
       imp_vs_hm_fmt = res.map(&:name) == %i(imperial half_median) ? res[1].format : nil
-      "The smallest available size is #{res[0]}. "\
-      "<br> The second smallest available size is #{res[1]}."
+      "The smallest available flavor is #{res[0]}. "\
+      "<br> The second smallest available flavor is #{res[1]}."
     when 3
       comp1  = %i(quarto sixteen_mo).include?(res[0].format) ? 'wider' : 'taller'
       comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
       comp1, comp2 = comp2, comp1 if $landsc
-      "The smallest available size is #{res[0]}. #{res[1]} is #{comp1}. "\
+      "The smallest available flavor is #{res[0]}. #{res[1]} is #{comp1}. "\
       "#{res[2]} is both #{comp1} and #{comp2}."
     end
 
