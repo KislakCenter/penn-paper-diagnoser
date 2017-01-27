@@ -50,10 +50,17 @@ class Diagnoser
     else
       sm2 = @sorted_matches[2]
       return [sm0, sm1] if sm2.nil?
-      median_exception = [sm0, sm1, sm2].map(&:name) == %i(chancery super_chancery median)
-      median_exception ? [sm0, sm1, sm2] : [sm0, sm1]
+      super_exception = CATEGORY_TRIOS.include? [sm0, sm1, sm2].map(&:name)
+      super_exception ? [sm0, sm1, sm2] : [sm0, sm1]
     end
   end
+
+  CATEGORY_TRIOS = [
+    %i(chancery super_chancery median),
+    %i(median   super_median   royal),
+    %i(royal    super_royal    imperial)
+  ]
+
 
   def sheet_note(format, deckle_t, deckle_b)
     if format == :quarto

@@ -57,11 +57,12 @@ post '/sizeit' do
       "The smallest available flavor is #{res[0]}. "\
       "<br> The second smallest available flavor is #{res[1]}."
     when 3
-      comp1  = %i(quarto sixteen_mo).include?(res[0].format) ? 'wider' : 'taller'
+      comp1  = %i(quarto sixteen_mo sixtyfour_mo).include?(res[0].format) ? 'wider' : 'taller'
       comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
       comp1, comp2 = comp2, comp1 if $landsc
+      much   = (res[0].name == :chancery) ? '' : 'much'
       "The smallest available flavor is #{res[0]}. #{res[1]} is #{comp1}. "\
-      "#{res[2]} is both #{comp1} and #{comp2}."
+      "#{res[2]} is #{much} #{comp1} and #{comp2}."
     end
 
   imp_vs_hm_fmt ||= nil
