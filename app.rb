@@ -53,7 +53,7 @@ post '/sizeit' do
     when 1
       "The only available flavor is #{res[0]}."
     when 2
-      imp_vs_hm_fmt = res.map(&:categpry) == %i(imperial half_median) ? res[1].format : nil
+      imp_vs_hm_fmt = res.map(&:category) == %i(imperial half_median) ? res[1].format : nil
       "The smallest available flavor is #{res[0]}. "\
       "<br> The second smallest available flavor is #{res[1]}."
     when 3
