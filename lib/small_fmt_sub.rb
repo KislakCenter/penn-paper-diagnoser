@@ -11,3 +11,8 @@ def fmt_str(fmt)
   end
 end
 
+
+def cat_str(cat)
+  cat.to_s.upcase.sub('_' , '-')
+end
+
