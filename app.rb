@@ -53,14 +53,14 @@ post '/sizeit' do
     when 1
       "The only available flavor is #{res[0]}."
     when 2
-      imp_vs_hm_fmt = res.map(&:name) == %i(imperial half_median) ? res[1].format : nil
+      imp_vs_hm_fmt = res.map(&:categpry) == %i(imperial half_median) ? res[1].format : nil
       "The smallest available flavor is #{res[0]}. "\
       "<br> The second smallest available flavor is #{res[1]}."
     when 3
       comp1  = %i(full_sheet quarto sixteen_mo sixtyfour_mo).include?(res[0].format) ? 'wider' : 'taller'
       comp2  = (comp1 == 'wider') ? 'taller' : 'wider'
       comp1, comp2 = comp2, comp1 if $landsc
-      much   = (res[0].name == :chancery) ? '' : 'much'
+      much   = (res[0].category == :chancery) ? '' : 'much'
       "The smallest available flavor is #{res[0]}. #{res[1]} is #{comp1}. "\
       "#{res[2]} is #{much} #{comp1} and #{comp2}."
     end

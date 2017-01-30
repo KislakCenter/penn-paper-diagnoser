@@ -4,13 +4,13 @@ class Diagnoser
   attr_reader :sorted_matches
 
   def initialize
-    @formats = %i(folio agenda_quarto quarto octavo sixteen_mo thirtytwo_mo sixtyfour_mo)
-    @names   = %i(imperial super_royal royal super_median median super_chancery chancery half_median)
+    @formats    = %i(folio agenda_quarto quarto octavo sixteen_mo thirtytwo_mo sixtyfour_mo)
+    @categories = %i(imperial super_royal royal super_median median super_chancery chancery half_median)
     @formats << :full_sheet if $single
 
     @papersizes = []
-    @names.each do |n|; @formats.each do |f|
-      @papersizes << PaperSize.new(n,f)
+    @categories.each do |c|; @formats.each do |f|
+      @papersizes << PaperSize.new(c,f)
     end; end
 
     @exclusion = Hash.new([])
@@ -50,7 +50,7 @@ class Diagnoser
     else
       sm2 = @sorted_matches[2]
       return [sm0, sm1] if sm2.nil?
-      super_exception = CATEGORY_TRIOS.include? [sm0, sm1, sm2].map(&:name)
+      super_exception = CATEGORY_TRIOS.include? [sm0, sm1, sm2].map(&:category)
       super_exception ? [sm0, sm1, sm2] : [sm0, sm1]
     end
   end
@@ -71,7 +71,6 @@ class Diagnoser
       condition = deckle_t && deckle_b
     end
     sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eighth-sheets'}[format]
-  # condition ? {fmt: format.to_s.upcase.small_fmt_sub, deck: deck, sh: sheet_size} : nil
     condition ? {fmt: fmt_str(fmt), deck: deck, sh: sheet_size} : nil
   end
 end
