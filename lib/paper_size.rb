@@ -1,5 +1,5 @@
 class PaperSize
-  attr_reader :name
+  attr_reader :category
   attr_reader :format
   attr_reader :height
   attr_reader :width
@@ -16,17 +16,17 @@ class PaperSize
     half_median:    [25.0, 17.5]
   }
 
-  def initialize(name, format)
-    @name   = name
-    @format = format
-    dims = get_dims(name, format)
+  def initialize(category, format)
+    @category = category
+    @format   = format
+    dims = get_dims(category, format)
     @height = dims[0].round(1)
     @width  = dims[1].round(1)
     @area   = (height * width).round(1)
   end
 
-  def get_dims(name, format)
-    utd = UNTRIMDIMS[name]
+  def get_dims(category, format)
+    utd = UNTRIMDIMS[category]
     convert(format, utd[0], utd[1])
   end
 
@@ -56,7 +56,7 @@ class PaperSize
 
   def == other
     return false unless other.is_a?(PaperSize)
-    self.name == other.name && self.format == other.format
+    self.category == other.category && self.format == other.format
   end
 
   def to_s
@@ -66,7 +66,7 @@ class PaperSize
     else
       ori = ''
     end
-    "#{name.to_s.upcase.sub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
+    "#{category.to_s.upcase.sub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
   end
 
   ALT_FORMAT = {
