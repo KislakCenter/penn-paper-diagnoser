@@ -70,7 +70,11 @@ class Diagnoser
       deck      = 'top and bottom'
       condition = deckle_t && deckle_b
     end
-    sheet_size = {quarto: 'half-sheets', octavo: 'quarter-sheets', sixteen_mo: 'eighth-sheets'}[format]
+    sheet_size = case format
+                 when :quarto     then 'half sheets'
+                 when :octavo     then 'quarter sheets'
+                 when :sixteen_mo then 'eighth sheets'
+                 end
     condition ? {fmt: fmt_str(fmt), deck: deck, sh: sheet_size} : nil
   end
 end
