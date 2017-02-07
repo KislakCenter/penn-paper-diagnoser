@@ -61,12 +61,8 @@ class PaperSize
 
   def to_s
     fmt = $single ? ALT_FORMAT[format] : format
-    if $single
-      ori = $landsc ? '(landscape) ' : '(portrait) '
-    else
-      ori = ''
-    end
-    "#{category.to_s.upcase.sub('_' , '-')} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
+    ori = $landsc ? '(landscape) ' : '(portrait) ' if $single
+    "#{cat_str(category)} #{fmt_str(fmt)} " + "#{ori} #{dimensions}"
   end
 
   ALT_FORMAT = {
