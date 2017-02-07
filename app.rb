@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'bundler/setup'
 require 'lib/diagnoser'
 require 'sinatra'
-require 'lib/flavor_stringing'
+require 'lib/flavortranslate'
 
 
 get '/' do
