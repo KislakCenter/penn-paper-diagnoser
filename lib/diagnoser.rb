@@ -75,7 +75,7 @@ class Diagnoser
                  when :octavo     then 'quarter sheets'
                  when :sixteen_mo then 'eighth sheets'
                  end
-    condition ? {fmt: fmt_str(fmt), deck: deck, sh: sheet_size} : nil
+    condition ? {fmt: fmt_str(format), deck: deck, sh: sheet_size} : nil
   end
 end
 
