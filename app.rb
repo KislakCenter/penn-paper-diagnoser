@@ -79,8 +79,6 @@ post '/sizeit' do
     "<br>If it's HALF-MEDIAN #{fmt_str(imp_vs_hm_fmt)}, #{water_loc}"
   end
 
-
-
   unless $single
     res_fmts     = res.map(&:format)
     partial_fmts = %i(quarto octavo sixteen_mo).select{ |f| res_fmts.include?(f) }
@@ -108,8 +106,8 @@ post '/sizeit' do
     message << note
   end
 
-  larger, smaller = $landsc ? [width, height] : [height, width] # is this contradictory with the new 'H/W' language?
-  ratio = "H/W ratio: #{(larger/smaller).round(2)} [reciprocal: #{(smaller/larger).round(2)}]"
+  h, w = $landsc ? [width, height] : [height, width]
+  ratio = "H/W ratio: #{(h/w).round(2)} [reciprocal: #{(w/h).round(2)}]"
   message << "<br><br>#{ratio}" unless height == 0 || width == 0
 
   message = 'Please check either Vertical or Horizontal for the chain lines.' if chain == :both
