@@ -68,7 +68,7 @@ class PaperSize
   ALT_FORMAT = {
     full_sheet:    'full sheet',
     folio:         'half sheet',
-    agenda_quarto: 'tall quarter sheet',
+    agenda_quarto: 'agenda quarter sheet',
     quarto:        'quarter sheet',
     octavo:        'eighth sheet',
     sixteen_mo:    '16th sheet',
