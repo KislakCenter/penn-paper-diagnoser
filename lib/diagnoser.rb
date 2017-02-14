@@ -22,12 +22,27 @@ class Diagnoser
     @exclusion = Hash.new(@formats - [f])
   end
 
+# def find_matches(height, width, chain)
+#   possible_formats = @formats - @exclusion[chain]
+#   @matches = @papersizes.select do |ps|
+#     possible_formats.include?(ps.format) && height <= ps.height && width <= ps.width
+#   end
+# end
+
+  # ....................................................................
+  CHAIN_REVERSE = {horizontal: :vertical, vertical: :horizontal}
   def find_matches(height, width, chain)
-    possible_formats = @formats - @exclusion[chain]
-    @matches = @papersizes.select do |ps|
-      possible_formats.include?(ps.format) && height <= ps.height && width <= ps.width
-    end
+    @matches  = get_candidates(height, width, chain)
+    @matches += get_candidates(width, height, CHAIN_REVERSE[:chain]) if $single
+    @matches.uniq!
   end
+
+  def get_candidates(height, width, chain)
+     possible_fmts = @formats - @exclusion[chain]
+   # possible_fmts = CHAIN_FORMATS[chain]
+    @papersizes.select{ |f| possible_fmts.include?(f.format) && f.height >= height && f.width >= width }
+  end
+  # ....................................................................
 
   def sort_by_dim(dim)
     @sorted_matches = @matches.sort_by{ |m| m.measure(dim) }
