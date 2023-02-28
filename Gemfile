@@ -1,4 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'sinatra'
+ruby '3.1.2'
+
 gem 'puma'
+
+gem 'sinatra'
