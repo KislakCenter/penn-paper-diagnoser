@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '3.4.13'
+ruby '4.0.10'
 
 gem 'puma'
 gem 'rackup'
