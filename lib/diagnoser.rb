@@ -45,7 +45,10 @@ class Diagnoser
   # ....................................................................
 
   def sort_by_dim(dim)
-    @sorted_matches = @matches.sort_by{ |m| m.measure(dim) }
+    # TODO: neither sort nor sort_by is stable, so equal measures come out in an
+    # implementation-defined order. Block sort reproduces the tie order recorded
+    # on Ruby 3.1.2 (golden master); sort_by changed its tie order in newer Rubies.
+    @sorted_matches = @matches.sort { |a, b| a.measure(dim) <=> b.measure(dim) }
   end
 
   def get_results(deckle_tobo, deckle_side)
