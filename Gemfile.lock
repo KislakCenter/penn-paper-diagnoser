@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    diff-lcs (1.6.2)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
@@ -9,6 +10,19 @@ GEM
     rack (2.2.6.2)
     rack-protection (3.0.5)
       rack
+    rspec (3.13.2)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.7)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.9)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.8)
     ruby2_keywords (0.0.5)
     sinatra (3.0.5)
       mustermann (~> 3.0)
@@ -25,6 +39,7 @@ PLATFORMS
 
 DEPENDENCIES
   puma
+  rspec
   sinatra
 
 RUBY VERSION
